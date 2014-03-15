@@ -3,14 +3,14 @@
 module Development.CPP where
 #strict_import
 
-#opaque_t string
+#opaque_t String
 #opaque_t vector_int
 #opaque_t vector_float
 #opaque_t vector_double
 
-#ccall std_create_string   , IO (Ptr <string>)
-#ccall std_cstringToString , CString -> CSize -> IO (Ptr <string>)
-#ccall std_stringToCString , Ptr <string> -> IO CString
+#ccall std_create_String   , IO (Ptr <String>)
+#ccall std_cstringToString , CString -> CSize -> IO (Ptr <String>)
+#ccall std_stringToCString , Ptr <String> -> IO CString
 
 #ccall std_create_vector   , IO (Ptr <vector_int>)
 #ccall std_carrayTovector  , Ptr CInt -> CSize -> IO (Ptr <vector_int>)

@@ -15,6 +15,7 @@ category:               Development
 
 library
     exposed-modules:        Development.CPP
+                          , Development.CPPUtils
     include-dirs:           include/
     includes:               include/interop.hpp
     c-sources:              cbits/interop.cpp

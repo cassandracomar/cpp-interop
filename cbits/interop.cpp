@@ -1,5 +1,7 @@
 #include <interop.hpp>
 
+typedef string String;
+
 extern "C" {
 string* std_create_string() {
     return new string;
