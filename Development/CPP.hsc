@@ -8,7 +8,7 @@ module Development.CPP where
 #opaque_t vector_float
 #opaque_t vector_double
 
-#ccall std_create_String   , IO (Ptr <String>)
+#ccall std_create_string   , IO (Ptr <String>)
 #ccall std_cstringToString , CString -> CSize -> IO (Ptr <String>)
 #ccall std_stringToCString , Ptr <String> -> IO CString
 

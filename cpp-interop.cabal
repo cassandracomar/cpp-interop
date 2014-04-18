@@ -19,7 +19,10 @@ library
     include-dirs:           include/
     includes:               include/interop.hpp
     c-sources:              cbits/interop.cpp
-    cc-options:             -fpermissive
+    if os(linux)
+        cc-options:         -fpermissive -std=c++11 -fPIC
+    else
+        cc-options:         -fpermissive -fPIC
     ghc-options:            -pgml g++
     build-depends:          base >=4.6 && <5
                           , bindings-DSL >= 1.0.17
