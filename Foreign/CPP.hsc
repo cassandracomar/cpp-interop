@@ -1,6 +1,6 @@
 #include <bindings.dsl.h>
 #include <interop.hpp>
-module Development.CPP where
+module Foreign.CPP where
 #strict_import
 
 #opaque_t String
