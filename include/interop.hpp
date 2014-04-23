@@ -8,7 +8,9 @@ using namespace std;
     vector_##t * create_std_vector##tn(); \
     vector_##t * carray_to_std_vector##tn( t * a, size_t len ); \
     t * std_vector##tn##_to_carray( vector_##t * v ); \
-    size_t std_vector##tn##_length( vector_##t * v);
+    size_t std_vector##tn##_length( vector_##t * v); \
+    void destroy_std_vector##tn( vector_##t * v); \
+    void delete_std_vector##tn( vector_##t * v);
 
 #define ADD_VECTOR_IMPL(t, tn) \
     vector_##t * create_std_vector##tn() { \
@@ -28,7 +30,13 @@ using namespace std;
     \
     size_t std_vector##tn##_length( vector_##t * v) { \
         return v->size();\
-    } 
+    } \
+    void destroy_std_vector##tn( vector_##t * v) { \
+        v->~vector_##t();\
+    }\
+    void delete_std_vector##tn( vector_##t * v) { \
+        delete v;\
+    }\
 
 extern "C" {
 string* create_std_string();
