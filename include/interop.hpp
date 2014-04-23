@@ -3,27 +3,40 @@
 
 using namespace std;
 
-typedef vector<int> vector_int;
-typedef vector<float> vector_float;
-typedef vector<double> vector_double;
+#define ADD_VECTOR_HEADERS(t, tn) \
+    typedef vector< t > vector_##t; \
+    vector_##t * create_std_vector##tn(); \
+    vector_##t * carray_to_std_vector##tn( t * a, size_t len ); \
+    t * std_vector##tn##_to_carray( vector_##t * v ); \
+    size_t std_vector##tn##_length( vector_##t * v);
+
+#define ADD_VECTOR_IMPL(t, tn) \
+    vector_##t * create_std_vector##tn() { \
+        return new vector_##t;\
+    }\
+    \
+    vector_##t * carray_to_std_vector##tn( t * a, size_t len ) {\
+        vector_##t * v = new vector_##t;\
+        for(size_t i = 0; i < len; i++) \
+            v->push_back(a[i]);\
+        return v;\
+    }\
+    \
+    t * std_vector##tn##_to_carray( vector_##t * v ) {\
+        return v->data();\
+    }\
+    \
+    size_t std_vector##tn##_length( vector_##t * v) { \
+        return v->size();\
+    } 
 
 extern "C" {
-string* std_create_string();
-string* std_cstringToString(char* s, size_t len);
-const char*   std_stringToCString(string* s);
+string* create_std_string();
+string* cstring_to_std_string(char* s, size_t len);
+const char*   std_string_to_cstring(string* s);
 
-vector_int* std_create_vector();
-vector_int* std_carrayTovector(int* a, size_t len);
-int*   std_vectorToCArray(vector_int* s);
-size_t std_vector_length(vector_int* self);
+ADD_VECTOR_HEADERS(int, i);
+ADD_VECTOR_HEADERS(float, f);
+ADD_VECTOR_HEADERS(double, d);
 
-vector_float* std_create_vectorf();
-vector_float* std_carrayTovectorf(float* a, size_t len);
-float*   std_vectorfToCArray(vector_float* s);
-size_t std_vectorf_length(vector_float* self);
-
-vector_double* std_create_vectord();
-vector_double* std_carrayTovectord(double* a, size_t len);
-double*   std_vectordToCArray(vector_double* s);
-size_t std_vectord_length(vector_double* self);
 }
