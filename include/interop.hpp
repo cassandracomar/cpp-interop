@@ -16,18 +16,15 @@ using namespace std;
     vector_##t * create_std_vector##tn() { \
         return new vector_##t;\
     }\
-    \
     vector_##t * carray_to_std_vector##tn( t * a, size_t len ) {\
         vector_##t * v = new vector_##t;\
         for(size_t i = 0; i < len; i++) \
             v->push_back(a[i]);\
         return v;\
     }\
-    \
     t * std_vector##tn##_to_carray( vector_##t * v ) {\
         return v->data();\
     }\
-    \
     size_t std_vector##tn##_length( vector_##t * v) { \
         return v->size();\
     } \
